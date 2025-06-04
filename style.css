@@ -1,0 +1,113 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Ubuntu', sans-serif;
+    color: #fff;
+    user-select: none;
+}
+
+#splash-screen {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, #4c1a38 0%, #2c001e 70%, #1c0012 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Status bar styles removed */
+
+.time-date-container {
+    text-align: center;
+    position: absolute;
+    top: 10%; /* Adjusted from 15% as status bar is gone. Fine-tune as needed. */
+    /* Or use a fixed value like: top: 80px; */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+.clock {
+    font-size: 64px;
+    font-weight: 300;
+    color: #f0f0f0;
+    line-height: 1;
+}
+
+.date {
+    font-size: 18px;
+    font-weight: 400;
+    color: #d0d0d0;
+    margin-top: 5px;
+}
+
+.splash-orb-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#splash-orb-container {
+    width: 250px;
+    height: 250px;
+    background-color: rgba(50, 20, 40, 0.85);
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 30px rgba(0,0,0,0.3);
+    z-index: 2;
+}
+
+#splash-orb-perimeter-dots {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.splash-orb-dot {
+    width: 6px;
+    height: 6px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    will-change: transform, opacity;
+}
+
+.splash-orb-text {
+    font-size: 20px; /* Slightly larger for better visibility with simpler text */
+    font-weight: 300; /* Lighter weight can look elegant */
+    color: rgba(255, 255, 255, 0.85);
+    text-align: center;
+    z-index: 1;
+    padding: 0 20px;
+}
+
+#splash-background-bubbles-canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.splash-bubble {
+    border-radius: 50%;
+    position: absolute;
+    will-change: transform, opacity;
+    mix-blend-mode: screen;
+}

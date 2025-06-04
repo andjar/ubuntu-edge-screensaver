@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubuntu Style Screensaver</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="splash-screen">
+        <!-- Status bar removed -->
+
+        <div class="time-date-container">
+            <div id="clock" class="clock">12:10</div>
+            <div id="date" class="date">Monday, 22 July</div>
+        </div>
+
+        <div id="splash-background-bubbles-canvas"></div>
+
+        <div class="splash-orb-wrapper">
+            <div id="splash-orb-container">
+                <div id="splash-orb-perimeter-dots"></div>
+                <div class="splash-orb-text">
+                    Welcome
+                    <!-- Other ideas for text: -->
+                    <!-- System Idle -->
+                    <!-- Resting... -->
+                    <!-- Breathe -->
+                    <!-- Ubuntu -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function updateTimeDate() {
+            const now = new Date();
+            const clockElement = document.getElementById('clock');
+            const dateElement = document.getElementById('date');
+
+            if (clockElement) {
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                clockElement.textContent = `${hours}:${minutes}`;
+            }
+
+            if (dateElement) {
+                const options = { weekday: 'long', day: 'numeric', month: 'long' };
+                dateElement.textContent = now.toLocaleDateString(undefined, options);
+            }
+        }
+        updateTimeDate();
+        setInterval(updateTimeDate, 1000 * 30);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ensure MAIN_ORB_VISUAL_RADIUS in script.js matches
+            // half the diameter of #splash-orb-container (e.g., 125 if diameter is 250px).
+            if (window.splashAnimations && typeof window.splashAnimations.start === 'function') {
+                setTimeout(() => {
+                    window.splashAnimations.start();
+                }, 100);
+            } else {
+                console.error("splashAnimations not found or start function is missing.");
+            }
+        });
+    </script>
+</body>
+</html>
